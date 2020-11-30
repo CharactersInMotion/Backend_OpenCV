@@ -1,0 +1,62 @@
+plugins {
+    id "java"
+    id "application"
+}
+
+group "dev.upcraft"
+version "development"
+
+compileJava {
+    options.release.set(8)
+}
+
+application {
+    mainClass.set("dev.upcraft.charactersinmotion.main.Main")
+}
+
+run {
+    workingDir("run")
+
+    args() // add custom arguments here
+    doFirst {
+        workingDir.mkdirs()
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        //events "passed", "skipped", "failed"
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compileOnly "org.jetbrains:annotations:${project.jetbrains_annotations_version}"
+
+    // openCV
+    implementation "org.openpnp:opencv:${project.opencv_version}"
+
+    // math and vector library
+    implementation "org.joml:joml:${project.joml_version}"
+
+    // real time compression library
+    implementation "org.lwjgl:lwjgl-zstd:${project.lwjgl_version}"
+
+    // logging
+    implementation "org.apache.logging.log4j:log4j-api:${project.log4j_version}"
+    runtimeOnly "org.apache.logging.log4j:log4j-core:${project.log4j_version}"
+
+    // CLI arguments
+    implementation "net.sf.jopt-simple:jopt-simple:${project.jopt_version}"
+
+    // JSON parsing
+    implementation "com.google.code.gson:gson:${project.gson_version}"
+
+    // testing
+    testImplementation platform("org.junit:junit-bom:${project.junit_version}")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+}
