@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: CharactersInMotion-Install
-          path: build/distributions/**
+          path: build/distributions/*.zip
       - name: Store Slim Artifact
         uses: actions/upload-artifact@v2
         with:

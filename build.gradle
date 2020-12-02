@@ -12,6 +12,7 @@ compileJava {
 }
 
 application {
+    applicationName = "CharactersInMotion"
     mainClass.set("dev.upcraft.charactersinmotion.main.Main")
 }
 
