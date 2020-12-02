@@ -1,0 +1,35 @@
+name: Build Status
+
+on:
+  push:
+    paths-ignore:
+      - '.github/**'
+    tags-ignore:
+      - '*.*'
+    branches:
+      - 'main'
+      - '*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 15
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Store Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: CharactersInMotion-Install
+          path: build/distributions/**
+      - name: Store Slim Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: CharactersInMotion-Slim
+          path: build/libs/*.jar
