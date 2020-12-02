@@ -27,6 +27,7 @@ public class Main {
         }
         // TODO parse CLI arguments here
 
+        CharactersInMotion.getLogger().info("{} {}", CharactersInMotion.APP_NAME, CharactersInMotion.APP_VERSION);
         CharactersInMotion.getLogger().info("Loading...");
         try (CharactersInMotion application = new CharactersInMotion()) {
             CharactersInMotion.getLogger().info("Loaded.");

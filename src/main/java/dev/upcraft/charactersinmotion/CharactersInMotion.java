@@ -1,5 +1,6 @@
 package dev.upcraft.charactersinmotion;
 
+import com.google.common.base.MoreObjects;
 import nu.pattern.OpenCV;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,7 +10,9 @@ import org.opencv.core.Mat;
 
 public class CharactersInMotion implements AutoCloseable {
 
-    private static final Logger logger = LogManager.getLogger("CharactersInMotion");
+    public static final String APP_NAME = MoreObjects.firstNonNull(CharactersInMotion.class.getPackage().getImplementationTitle(), "CharactersInMotion");
+    public static final String APP_VERSION = MoreObjects.firstNonNull(CharactersInMotion.class.getPackage().getImplementationVersion(), "development-preview");
+    private static final Logger logger = LogManager.getLogger(APP_NAME);
 
     public static Logger getLogger() {
         return logger;
