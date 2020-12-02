@@ -4,6 +4,7 @@ plugins {
 }
 
 group "dev.upcraft"
+archivesBaseName = "characters-in-motion"
 version "development"
 
 compileJava {
@@ -21,6 +22,16 @@ run {
     doFirst {
         workingDir.mkdirs()
     }
+}
+
+tasks.withType(Jar) {
+    manifest.mainAttributes(
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            "Maven-Artifact": "${project.group}:${archivesBaseName}:${project.version}".toLowerCase(Locale.ROOT),
+            "Built-On-Java": "${System.getProperty("java.vm.version")} (${System.getProperty("java.vm.vendor")})"
+    )
 }
 
 test {
